@@ -1,0 +1,119 @@
+<!-- dashboard.html -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard</title>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speech to Text and Text to Speech Example</title>
+  <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <header>
+
+      <h2 class="logo">ABILITY</h2>
+      <nav class="navigation">
+          <a href="#">About</a>
+          <a href="#">Services</a>
+          <a id="contactLink">Contact </a>
+          <div class="container dropdown-content" id="contactFormContainer">
+              <h1>Contact Us</h1>
+              <form id="contactForm">
+                  <label for="email">Your Email:</label><br>
+                  <textarea id="email" name="email" required></textarea>
+                  <label for="message">Your Message:</label><br>
+                  <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+                  <button type="submit">Send</button>
+              </form>
+          </div>
+      </nav>
+      
+  </header>
+  <button id="microphone-btn"><img src="image.png" alt="" id="icon"></button>
+  <div></div>
+  <textarea id="results" rows="4" cols="50" oninput="speak()" placeholder="speak question"></textarea>
+  <div id="response"></div>
+  <!---->
+
+
+ <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <script src="index.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const contactLink = document.getElementById("contactLink");
+        const contactFormContainer = document.getElementById("contactFormContainer");
+        const emailInput = document.getElementById("email");
+
+        let isHoveringContactLink = false;
+        let isHoveringContactForm = false;
+
+        // Show contact form container when mouse hovers over the contact link or the dropdown content
+        contactLink.addEventListener("mouseenter", function() {
+            isHoveringContactLink = true;
+            showContactForm();
+        });
+
+        contactFormContainer.addEventListener("mouseenter", function() {
+            isHoveringContactForm = true;
+            showContactForm();
+        });
+
+        // Hide contact form container when mouse moves out of the contact link or the dropdown content
+        contactLink.addEventListener("mouseleave", function() {
+            isHoveringContactLink = false;
+            hideContactForm();
+        });
+
+        contactFormContainer.addEventListener("mouseleave", function() {
+            isHoveringContactForm = false;
+            hideContactForm();
+        });
+
+        // Show contact form container
+        function showContactForm() {
+            if (isHoveringContactLink || isHoveringContactForm) {
+                contactFormContainer.classList.add("show");
+            }
+        }
+
+        // Hide contact form container
+        function hideContactForm() {
+            if (!isHoveringContactLink && !isHoveringContactForm) {
+                contactFormContainer.classList.remove("show");
+            }
+        }
+
+        // Ensure contact form container remains visible when interacting with autofill suggestions
+        emailInput.addEventListener("input", function() {
+            showContactForm();
+        });
+
+        // Keep contact form container visible when hovering over the dropdown content
+        contactFormContainer.addEventListener("mouseenter", function() {
+            showContactForm();
+        });
+
+        const contactForm = document.getElementById("contactForm");
+
+        contactForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(contactForm);
+            const email = formData.get("email");
+            const message = formData.get("message");
+
+            const mailtoLink = `mailto:ingeritresor@gmail.com?subject=Message%20from%20${encodeURIComponent(email)}&body=${encodeURIComponent(message)}`;
+            
+            window.location.href = mailtoLink;
+        });
+    });
+</script>
+  <br>
+  <br>
+  </body>
+
+</html>
+</html>
