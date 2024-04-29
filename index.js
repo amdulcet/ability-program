@@ -56,7 +56,7 @@ function typeTextWithDelay(text) {
         } else {
             clearInterval(typingInterval);
         }
-    }, 70); // Adjust the typing speed here (milliseconds per character)
+    }, 50); // Adjust the typing speed here (milliseconds per character)
 }
 
 

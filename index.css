@@ -11,7 +11,6 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('image.gif');
 }
 header{
     position: fixed;
@@ -153,6 +152,7 @@ textarea {
         color: white;
         border: none;
         cursor: pointer;
+        border-radius: 2vw;
     }
 
     button:hover {
