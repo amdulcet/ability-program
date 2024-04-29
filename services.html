@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - ABILITY</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+section {
+    padding: 20px 0;
+}
+
+.service {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.service h2 {
+    margin-top: 0;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+</style>
+<style>
+    .logo{
+        font-size: 2em;
+        color:black;
+        user-select: none;
+    }
+    
+    .navigation a{
+    position: relative;
+    font-size: 1.1em;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+    color: white;
+    float: right;
+    }
+    
+    .navigation a::after{
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 100%;
+        height: 3px;
+        background: whitesmoke;
+        border-radius: 5px;
+        transform: scaleX(0);
+        transition: transform.5s;
+    
+    
+    }
+    .navigation a:hover::after{
+        transform: scaleX(1);
+    
+    }
+        </style>
+<body>
+    <header>
+        <div class="container">
+            <h1>Services</h1>
+
+            <nav class="navigation">
+                <a href="contact.html">Contact</a>
+                <a href="about.html">About Us</a>
+                <a href="dashboard.html">Home </a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="services">
+        <div class="container">
+            <div class="service">
+                <h2>Voice-Enabled Internet Browsing</h2>
+                <p>Our voice-enabled internet browsing feature allows users to navigate the web hands-free. Simply speak commands and our AI assistant will assist you in accessing information, reading web pages, and more.</p>
+            </div>
+            <div class="service">
+                <h2>Natural Language Understanding</h2>
+                <p>With our natural language understanding technology, our AI assistant can comprehend and respond to your queries in conversational English. Ask questions, make requests, and interact with the internet effortlessly.</p>
+            </div>
+            <div class="service">
+                <h2>Music Playback</h2>
+                <p>Enjoy your favorite music tracks from YouTube with our built-in music playback feature. Simply ask our AI assistant to play a song, artist, or genre, and sit back and relax as it fills your space with music.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 ABILITY. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
