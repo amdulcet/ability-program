@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
       utteranceText = 'Welcome to the service page. Voice-Enabled Internet Browsing, Our voice-enabled internet browsing feature allows users to navigate the web hands-free. Simply speak commands and our AI assistant will assist you in accessing information, reading web pages, and more.Natural Language Understanding. With our natural language understanding technology, our AI assistant can comprehend and respond to your queries in conversational English. Ask questions, make requests, and interact with the internet effortlessly. Music Playback. Enjoy your favorite music tracks from YouTube with our built-in music playback feature. Simply ask our AI assistant to play a song, artist, or genre, and sit back and relax as it fills your space with music.' ;
     } else if (currentPageUrl.includes('contact')) {
       utteranceText = 'Welcome to the contact page. In this page, come to it whenever you feel like you want to send a message to the Ability owners. We are here to help you with any further modifications and assistance to make your program the best for your learning. here is quick guide to contact us. Press the space bar button on your keyboard and speak the name of your e-mail, press the space bar button for the second time if you are ready to speak your message, speak your message. thirdly press the space bar again and give a confirmation response just like "yes". with those few steps, your message will reach us directly. thank you.';
+    } else if (currentPageUrl.includes('youtube')) {
+      utteranceText = 'Welcome to the youtube page. press space bar button and speak the name of the song you want to listen to. ';
     } else {
       utteranceText = defaultText;
     }

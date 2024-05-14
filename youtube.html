@@ -1,87 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Voice-Controlled YouTube Player</title>
   <style>
     body {
-      background-color:black;
-      color: white;
-      font-family: 'poppins', sans-serif;
-      font-size: 30px;
       text-align: center;
+      align-items: center;
+      justify-content: center;
+      background: rgba(28, 35, 28, 0.067);
+      background-color: rgb(3, 3, 12);
     }
-    h1 {
-      font-size: 50px;
-      margin-top: 0px;
-      font-family: 'poppins', sans-serif;
 
-    }
     #player {
-     width: 80%;
-   height: 72vh;
-   
-    }
-    header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 100px;
-    background-color: transparent;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 99;
+      margin-top: 19vh;
+      width: 80%;
+      height: 72vh;
 
-}
-.navigation a{
-position: relative;
-font-size: 1.1em;
-text-decoration: none;
-font-weight: 500;
-margin-left: 40px;
-color: white;
-
-}
-.navigation a::after{
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 100%;
-    height: 3px;
-    background: whitesmoke;
-    border-radius: 5px;
-    transform: scaleX(0);
-    transition: transform.5s;
-}
-.navigation a:hover::after{
-    transform: scaleX(1);
-
-}
-.logo{
-        font-size: 2em;
-        color:black;
-        user-select: none;
-    }
-    div{
-        
     }
 
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 100px;
+      background-color: transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 99;
+      background-color: #333;
+    }
+    .navigation{
+      margin-right: 17vw;
+    }
+    .navigation a {
+      position: relative;
+      font-size: 1.4em;
+      text-decoration: none;
+      font-weight: 500;
+      color:white;
+      padding: 5px;
+    }
+
+    .navigation a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 3px;
+      background: whitesmoke;
+      border-radius: 5px;
+      transform: scaleX(0);
+      transition: transform.5s;
+    }
+
+    .navigation a:hover::after {
+      transform: scaleX(0.8);
+
+    }
+     .logo{
+      margin-left: -50px;
+    font-size: 1.5em;
+    color: whitesmoke;
+    user-select: none;
+} 
   </style>
 </head>
+
 <body>
-    <header>
-        <h1 class="logo">Voice-enabled Youtube</h1>
-        <nav class="navigation">
-            <a href="about.html">About</a>
-            <a href="service.html">Services</a>
-            <a href="contact.html">Contact </a>
-            <a href="home.html">Home</a>
-        </nav>
-        
-    </header>
+  <header>
+    <h2 class="logo">Voice-enabled Youtube</h2>
+    <nav class="navigation">
+      <a href="about.html">About</a>
+      <a href="service.html">Services</a>
+      <a href="contact.html">Contact </a>
+      <a href="home.html">Home</a>
+    </nav>
+
+  </header>
 
   <div id="player"></div>
   <script>
@@ -142,5 +143,8 @@ color: white;
   </script>
   <!-- Include the YouTube IFrame Player API -->
   <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="test.js"></script>
+  <script src="speake.js"></script>
 </body>
+
 </html>

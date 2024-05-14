@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motion Detection</title>
+<style>
+    #video {
+        display: none;
+    }
+</style>
+</head>
+<body>
+    <video id="video" width="640" height="480" autoplay></video>
+    <script>
+        const video = document.getElementById('video');
+        let motionDetected = false; // Flag to track if motion has been detected
+
+        // Function to start the camera
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+            } catch (err) {
+                console.error('Error accessing camera:', err);
+            }
+        }
+
+        // Function to detect motion
+        function detectMotion() {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            let lastImageData;
+            let intervalId;
+
+            // Start detecting motion
+            intervalId = setInterval(() => {
+                context.drawImage(video, 0, 0, 640, 480);
+                const currentImageData = context.getImageData(0, 0, 640, 480).data;
+
+                // Compare current frame with the last frame
+                if (lastImageData) {
+                    let differences = 0;
+                    for (let i = 0; i < currentImageData.length; i++) {
+                        if (currentImageData[i] !== lastImageData[i]) {
+                            differences++;
+                        }
+                    }
+
+                    // If there are enough differences, consider it as motion
+                    if (differences > 10000 && !motionDetected) {
+                        console.log('Motion detected!');
+                        speakMessage("Hello there!"); // Call speakMessage with your desired greeting
+                        motionDetected = true;
+                        clearInterval(intervalId); // Stop detecting motion
+                    }
+                }
+
+                lastImageData = currentImageData;
+            }, 1000 / 30); // Adjust the interval based on your requirement
+        }
+
+        // Function to speak a message
+        function speakMessage(message) {
+            const speech = new SpeechSynthesisUtterance(message);
+            speechSynthesis.speak(speech);
+        }
+
+        // Start the camera when the page loads
+        window.onload = function() {
+            startCamera();
+            detectMotion();
+        };
+    </script>
+</body>
+</html>
