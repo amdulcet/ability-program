@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check the current page URL and adjust the text accordingly
     var utteranceText;
     if (currentPageUrl.includes('home')) {
-      utteranceText = 'Welcome to the home page. We are happy to have you here. would you wish to ask your AI anything, i recommend you to press the space bar key and feel free to ask. do you wanna go to another page, press the enter key and say the page you want to go to since the pages we have now in Ability include contact, about us, services and finally home page.';
+      utteranceText = 'Welcome to the home page. We are happy to have you here. would you wish to ask your AI anything, i recommend you to press the space bar key and feel free to ask. do you wanna go to another page, press the enter key and say the page you want to go to since the pages we have now in Ability include contact, about us, services, youtube, library and finally home page.';
     } else if (currentPageUrl.includes('about')) {
       utteranceText = 'Welcome to the about page. Who We Are. Welcome to ABILITY, where we strive to empower individuals with disabilities through innovative technology solutions. Our team is dedicated to making the internet more accessible and inclusive for everyone.Our Mission. Our mission is to break down barriers and provide equal opportunities for individuals with disabilities to access information and participate fully in the digital world. We believe in leveraging the power of technology to create positive change in people lives. Our Team. We are a diverse team of engineers, designers, and accessibility experts passionate about making a difference. With our combined expertise and dedication, we work tirelessly to develop cutting-edge solutions that empower and enrich the lives of our users. Why Choose Us At ABILITY, we prioritize user experience, accessibility, and innovation. We understand the unique challenges faced by individuals with disabilities, and we are committed to providing solutions that enhance their quality of life. With our user-centered approach and commitment to excellence, you can trust us to deliver exceptional results.';
     } else if (currentPageUrl.includes('service')) {
@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
       utteranceText = 'Welcome to the contact page. In this page, come to it whenever you feel like you want to send a message to the Ability owners. We are here to help you with any further modifications and assistance to make your program the best for your learning. here is quick guide to contact us. Press the space bar button on your keyboard and speak the name of your e-mail, press the space bar button for the second time if you are ready to speak your message, speak your message. thirdly press the space bar again and give a confirmation response just like "yes". with those few steps, your message will reach us directly. thank you.';
     } else if (currentPageUrl.includes('youtube')) {
       utteranceText = 'Welcome to the youtube page. press space bar button and speak the name of the song you want to listen to. ';
+    } else if (currentPageUrl.includes('library')) {
+      utteranceText = 'Welcome to the library page. press space bar button and give a command of what you want to do with the library.';
     } else {
       utteranceText = defaultText;
     }

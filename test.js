@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
           window.location.href = 'contact.html'; // Redirect to contact page
         } else if (lastResult.includes('youtube')) {
           window.location.href = 'youtube.html'; // Redirect to youtube page
+        } else if (lastResult.includes('library')) {
+          window.location.href = 'Library.html'; // Redirect to library page
         } else {
           alert('No matching keyword found.'); // Alert if no matching keyword found
         }
