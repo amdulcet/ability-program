@@ -102,6 +102,7 @@ top: -50px;
     <a href="contact.html">Contact </a>
     <a href="youtube.html">Youtube</a>
     <a href="home.html">Home</a>
+    <a href="news.html">News</a>
 </nav>
   <div id="book-shelf">
     <button class="btn"> <a href="atomic-habits.pdf">atomic habits</a></button>
@@ -174,39 +175,41 @@ function handleSpeechRecognition(event) {
     }
   } else if (command.includes('close')) {
     closeBook();
-  } else if (command.includes('read from page')) {
+  } else if (command.includes('read from page') || (command.includes('start from page'))) {
     const pageNumber = parseInt(command.split('read from page')[1].trim());
     if (!isNaN(pageNumber)) {
       readFromPage(pageNumber);
     } else {
       speakMessage("Please specify a valid page number.");
     }
-  } else if (command.includes('read from chapter')) {
+  } else if (command.includes('read from chapter') || (command.includes('start from chapter'))) {
     const chapterNumber = parseInt(command.split('read from chapter')[1].trim());
     if (!isNaN(chapterNumber)) {
       readFromChapter(chapterNumber);
     } else {
       speakMessage("Please specify a valid chapter number.");
     }
-  } else if (command.includes('read from introduction')) {
+  } else if (command.includes('read from introduction') || (command.includes('start from introduction'))) {
     readFromIntroduction();
+  } else if (command.includes('what is in the library') || command.includes('what do you have in the library')) {
+    speakMessage("There are books in the library.");
   } else if (command.includes('summary')) {
     readSummary();
   } else if (command.includes('how many books')) {
     informBookCount();
-  } else if (command.includes('list books') || command.includes('which books') || command.includes('what books') || command.includes('name the books')){
+  } else if (command.includes('list books') || command.includes('which books') || command.includes('what books') || command.includes('name the books')|| command.includes('mention them') || command.includes('mention books')){
     listBooksInLibrary();
   } else {
     speakMessage("Please say 'open' followed by the book title, 'close' to return to the library, or specify a reading location.");
   }
 }
 
-// Function to speak a message with reduced speed rate
-function speakMessage(message) {
-  const utterance = new SpeechSynthesisUtterance(message);
-  utterance.rate = 0.8; // Adjust speed rate as needed (0.8 is slower)
-  window.speechSynthesis.speak(utterance);
-}
+// // Function to speak a message with reduced speed rate
+// function speakMessage(message) {
+//   const utterance = new SpeechSynthesisUtterance(message);
+//   utterance.rate = 0.8; // Adjust speed rate as needed (0.8 is slower)
+//   window.speechSynthesis.speak(utterance);
+// }
 
 // Function to read the book content with reduced speed rate
 function readBook() {
@@ -264,12 +267,15 @@ function extractSummary(url) {
 }
 
 // Function to render specific pages of the PDF using PDF.js
-function renderPDFPages(url, startPage, readContent = false) {
+// Function to render specific pages of the PDF using PDF.js
+function renderPDFPages(url, startPage, autoScroll = false) {
   const loadingTask = pdfjsLib.getDocument(url);
   loadingTask.promise.then(function(pdf) {
     bookContent.innerHTML = ''; // Clear previous content
-    let fullText = ''; // To collect text for reading
-    for (let pageNumber = startPage; pageNumber <= pdf.numPages; pageNumber++) {
+    let currentPageNumber = startPage;
+    let totalPages = pdf.numPages;
+
+    function renderPage(pageNumber) {
       pdf.getPage(pageNumber).then(function(page) {
         const scale = 1.5;
         const viewport = page.getViewport({ scale: scale });
@@ -297,21 +303,29 @@ function renderPDFPages(url, startPage, readContent = false) {
               span.textContent = textItem.str;
               span.setAttribute('style', `left: ${textItem.transform[4]}px; top: ${textItem.transform[5]}px; font-size: ${textItem.height}px;`);
               textLayerDiv.appendChild(span);
-              fullText += textItem.str + ' '; // Collect text for reading
             });
 
             bookContent.appendChild(textLayerDiv);
 
-            // Start reading the content if readContent is true
-            if (readContent) {
-              const utterance = new SpeechSynthesisUtterance(fullText);
+            // Start reading the content if autoScroll is true
+            if (autoScroll) {
+              const utterance = new SpeechSynthesisUtterance(textLayerDiv.innerText);
               utterance.rate = 0.8; // Adjust speed rate as needed (0.8 is slower)
               window.speechSynthesis.speak(utterance);
+              utterance.onend = function() {
+                currentPageNumber++;
+                if (currentPageNumber <= totalPages) {
+                  renderPage(currentPageNumber);
+                }
+              };
             }
           });
         });
       });
     }
+
+    // Start rendering pages
+    renderPage(startPage);
   });
 }
 
@@ -382,7 +396,7 @@ function handleKeydown(event) {
   // Handle specific key actions
   switch (event.key) {
     case ' ':
-      event.preventDefault(); // Prevent default spacebar action (scrolling)
+      event.preventDefault(); // Prevent default space bar action (scrolling)
       startVoiceRecognition();
       break;
     case 'Enter':
