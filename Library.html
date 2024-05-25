@@ -119,7 +119,7 @@ top: -50px;
   <button id="read-book" style="display:none;">Read Book</button>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
   <script>
-    // Get all book buttons
+  // Get all book buttons
 const bookButtons = document.querySelectorAll('.btn');
 const bookViewer = document.getElementById('book-viewer');
 const bookShelf = document.getElementById('book-shelf');
@@ -128,7 +128,16 @@ const readBookButton = document.getElementById('read-book');
 
 // Initially select the first book button
 let selectedBookIndex = 0;
-bookButtons[selectedBookIndex].classList.add('selected');
+if (bookButtons.length > 0) {
+  bookButtons[selectedBookIndex].classList.add('selected');
+}
+
+// Function to speak a message with reduced speed rate
+function speakMessage(message) {
+  const utterance = new SpeechSynthesisUtterance(message);
+  utterance.rate = 0.8; // Adjust speed rate as needed (0.8 is slower)
+  window.speechSynthesis.speak(utterance);
+}
 
 // Function to open the selected book
 function openSelectedBook(bookTitle) {
@@ -166,6 +175,7 @@ function closeBook() {
 // Function to handle speech recognition
 function handleSpeechRecognition(event) {
   const command = event.results[0][0].transcript.toLowerCase();
+  console.log(`Recognized command: ${command}`); // Debugging log
   if (command.includes('open')) {
     const bookTitle = command.split('open')[1].trim();
     if (bookTitle) {
@@ -175,7 +185,7 @@ function handleSpeechRecognition(event) {
     }
   } else if (command.includes('close')) {
     closeBook();
-  } else if (command.includes('read from page') || (command.includes('start from page'))) {
+  } else if (command.includes('read from page') || command.includes('start from page')) {
     const pageNumber = parseInt(command.split('read from page')[1].trim());
     if (!isNaN(pageNumber)) {
       readFromPage(pageNumber);
@@ -191,25 +201,18 @@ function handleSpeechRecognition(event) {
     }
   } else if (command.includes('read from introduction') || (command.includes('start from introduction'))) {
     readFromIntroduction();
-  } else if (command.includes('what is in the library') || command.includes('what do you have in the library')) {
-    speakMessage("There are books in the library.");
+  } else if (command.includes('what is in the library') || (command.includes('what do you have in the library'))) {
+    speakMessage("there are books in the library");
   } else if (command.includes('summary')) {
     readSummary();
-  } else if (command.includes('how many books')) {
+  } else if (command.includes('how many books') || (command.includes('specify number of books'))) {
     informBookCount();
-  } else if (command.includes('list books') || command.includes('which books') || command.includes('what books') || command.includes('name the books')|| command.includes('mention them') || command.includes('mention books')){
+  } else if (command.includes('list books') || (command.includes('which books')) || (command.includes('what books')) || (command.includes('name the books')) || (command.includes('mention them')) || (command.includes('mention books'))) {
     listBooksInLibrary();
   } else {
     speakMessage("Please say 'open' followed by the book title, 'close' to return to the library, or specify a reading location.");
   }
 }
-
-// // Function to speak a message with reduced speed rate
-// function speakMessage(message) {
-//   const utterance = new SpeechSynthesisUtterance(message);
-//   utterance.rate = 0.8; // Adjust speed rate as needed (0.8 is slower)
-//   window.speechSynthesis.speak(utterance);
-// }
 
 // Function to read the book content with reduced speed rate
 function readBook() {
@@ -226,7 +229,14 @@ function startVoiceRecognition() {
   recognition.lang = 'en-US';
   recognition.onresult = handleSpeechRecognition;
   recognition.onerror = function(event) {
+    console.error("Speech recognition error", event); // Debugging log
     speakMessage("Sorry, there was an error processing your request.");
+  };
+  recognition.onstart = function() {
+    console.log("Speech recognition started"); // Debugging log
+  };
+  recognition.onend = function() {
+    console.log("Speech recognition ended"); // Debugging log
   };
   recognition.start();
 }
@@ -266,7 +276,6 @@ function extractSummary(url) {
   return "This is a placeholder for the summary. The actual summary extraction logic needs to be implemented.";
 }
 
-// Function to render specific pages of the PDF using PDF.js
 // Function to render specific pages of the PDF using PDF.js
 function renderPDFPages(url, startPage, autoScroll = false) {
   const loadingTask = pdfjsLib.getDocument(url);
@@ -408,6 +417,7 @@ function handleKeydown(event) {
 // Add event listeners for keyboard events
 document.addEventListener('keydown', handleKeydown);
 readBookButton.addEventListener('click', readBook);
+
   </script>
     <script src="speake.js"></script>
   <script src="test.js"></script>
