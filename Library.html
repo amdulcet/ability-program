@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,93 +8,99 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500&display=swap');
 
-*{
-    font-family: 'poppins', sans-serif;
-}
-body{
-    background-color: #eee;
-}
-.btn a{
-    text-decoration: none;
-    font-family: 'poppins', sans-serif;
-}
-.btn{
-    height: 40px;
-    width: 900px;
-    cursor: pointer;
-    border-radius: 10px;
-}
-.selected {
-    background-color: lightblue;
-    cursor: pointer;
-  }
-  #book-viewer {
-    display: none;
-    width: 100%;
-    height: 80vh;
-  }
-  .selected {
-    border: 2px solid;
-    border-color: transparent;
-    color: white;
-  }
-  #book-viewer {
-    display: none;
-    width: 100%;
-    height: 80vh;
-  }
-  #book-content {
-    display: none;
-    width: 100%;
-    height: 80vh;
-    overflow: auto;
-  }
-  .selected {
-    border: 2px solid blue;
-  }
+    * {
+      font-family: 'poppins', sans-serif;
+    }
 
-  header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 100px;
-    background-color: transparent;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 99;
-}
+    body {
+      background-color: #000;
+      color: white;
+    }
 
-.navigation a{
-position: relative;
-font-size: 1.1em;
-text-decoration: none;
-font-weight: 500;
-margin-left: 40px;
-color:black;
-float: right;
-top: -50px;
+    .btn a {
+      text-decoration: none;
+      font-family: 'poppins', sans-serif;
+      color: white;
+    }
 
-}
-.navigation a::after{
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 100%;
-    height: 3px;
-    background:black;
-    border-radius: 5px;
-    transform: scaleX(0);
-    transition: transform.5s;
-}
-.navigation a:hover::after{
-    transform: scaleX(1);
+    .btn {
+      height: 40px;
+      width: 900px;
+      cursor: pointer;
+      border-radius: 10px;
+      background-color: #00000000;
+    }
+    .selected {
+      border: 2px solid;
+      border-color: white;
+      color: #000;
+      background-color: #201f1f00;
+      cursor: pointer;
+    }
+    #book-viewer {
+      display: none;
+      width: 100%;
+      height: 80vh;
+    }
 
-}
+    #book-viewer {
+      display: none;
+      width: 100%;
+      height: 80vh;
+    }
+
+    #book-content {
+      display: none;
+      width: 100%;
+      height: 80vh;
+      overflow: auto;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 100px;
+      background-color: transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 99;
+    }
+
+    .navigation a {
+      position: relative;
+      font-size: 1.1em;
+      text-decoration: none;
+      font-weight: 500;
+      margin-left: 40px;
+      color: white;
+      float: right;
+      top: -50px;
+
+    }
+
+    .navigation a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 3px;
+      background: white;
+      border-radius: 5px;
+      transform: scaleX(0);
+      transition: transform.5s;
+    }
+
+    .navigation a:hover::after {
+      transform: scaleX(1);
+
+    }
   </style>
 </head>
+
 <body>
   <h1>Welcome to Library!</h1>
   <nav class="navigation">
@@ -103,13 +110,15 @@ top: -50px;
     <a href="youtube.html">Youtube</a>
     <a href="home.html">Home</a>
     <a href="news.html">News</a>
-</nav>
+  </nav>
   <div id="book-shelf">
     <button class="btn"> <a href="atomic-habits.pdf">atomic habits</a></button>
     <button class="btn"> <a href="survive-the-drive.pdf">survive the drive</a></button>
     <button class="btn"> <a href="the-psychology-of-motivation.pdf">the psychology of motivation</a></button>
-    <button class="btn"> <a href="think-for-yourself-control-your-life.pdf">think for yourself control your life</a></button>
-    <button class="btn"> <a href="time-management-for-creative-people.pdf">time management for creative people</a></button>
+    <button class="btn"> <a href="think-for-yourself-control-your-life.pdf">think for yourself control your
+        life</a></button>
+    <button class="btn"> <a href="time-management-for-creative-people.pdf">time management for creative
+        people</a></button>
     <button class="btn"> <a href="how to talk anyone.pdf">how to talk to anyone</a></button>
     <button class="btn"> <a href="Rich Dad Poor Dad.pdf">rich dad poor dad</a></button>
     <button class="btn"> <a href="atomic-habits.pdf">atomic habits</a></button>
@@ -119,307 +128,308 @@ top: -50px;
   <button id="read-book" style="display:none;">Read Book</button>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
   <script>
-  // Get all book buttons
-const bookButtons = document.querySelectorAll('.btn');
-const bookViewer = document.getElementById('book-viewer');
-const bookShelf = document.getElementById('book-shelf');
-const bookContent = document.getElementById('book-content');
-const readBookButton = document.getElementById('read-book');
+    // Get all book buttons
+    const bookButtons = document.querySelectorAll('.btn');
+    const bookViewer = document.getElementById('book-viewer');
+    const bookShelf = document.getElementById('book-shelf');
+    const bookContent = document.getElementById('book-content');
+    const readBookButton = document.getElementById('read-book');
 
-// Initially select the first book button
-let selectedBookIndex = 0;
-if (bookButtons.length > 0) {
-  bookButtons[selectedBookIndex].classList.add('selected');
-}
-
-// Function to speak a message with reduced speed rate
-function speakMessage(message) {
-  const utterance = new SpeechSynthesisUtterance(message);
-  utterance.rate = 0.8; // Adjust speed rate as needed (0.8 is slower)
-  window.speechSynthesis.speak(utterance);
-}
-
-// Function to open the selected book
-function openSelectedBook(bookTitle) {
-  for (const button of bookButtons) {
-    const title = button.querySelector('a').innerText.toLowerCase();
-    if (title.includes(bookTitle.toLowerCase())) {
-      const bookUrl = button.querySelector('a').href;
-      renderPDF(bookUrl);
-      bookShelf.style.display = 'none';
-      bookContent.style.display = 'block';
-      readBookButton.style.display = 'block';
-      speakMessage(`You have opened the book titled ${bookTitle}.`);
-      setTimeout(() => {
-        speakMessage("Where do you want to begin from?");
-        startVoiceRecognition(); // Start voice recognition after asking the question
-      }, 3000); // Delay to allow the first message to be spoken
-      return; // Stop further execution
+    // Initially select the first book button
+    let selectedBookIndex = 0;
+    if (bookButtons.length > 0) {
+      bookButtons[selectedBookIndex].classList.add('selected');
     }
-  }
-  // If book not found, inform the user
-  speakMessage("Sorry, that book is not available.");
-}
 
-// Function to close the book and return to the library view
-function closeBook() {
-  bookViewer.src = '';
-  bookContent.innerHTML = '';
-  bookViewer.style.display = 'none';
-  bookShelf.style.display = 'block';
-  bookContent.style.display = 'none';
-  readBookButton.style.display = 'none';
-  speakMessage("Returned to the library.");
-}
-
-// Function to handle speech recognition
-function handleSpeechRecognition(event) {
-  const command = event.results[0][0].transcript.toLowerCase();
-  console.log(`Recognized command: ${command}`); // Debugging log
-  if (command.includes('open')) {
-    const bookTitle = command.split('open')[1].trim();
-    if (bookTitle) {
-      openSelectedBook(bookTitle);
-    } else {
-      speakMessage("Please specify a book title.");
+    // Function to speak a message with reduced speed rate
+    function speakMessage(message) {
+      const utterance = new SpeechSynthesisUtterance(message);
+      utterance.rate = 0.8; // Adjust speed rate as needed (0.8 is slower)
+      window.speechSynthesis.speak(utterance);
     }
-  } else if (command.includes('close')) {
-    closeBook();
-  } else if (command.includes('read from page') || command.includes('start from page')) {
-    const pageNumber = parseInt(command.split('read from page')[1].trim());
-    if (!isNaN(pageNumber)) {
-      readFromPage(pageNumber);
-    } else {
-      speakMessage("Please specify a valid page number.");
+
+    // Function to open the selected book
+    function openSelectedBook(bookTitle) {
+      for (const button of bookButtons) {
+        const title = button.querySelector('a').innerText.toLowerCase();
+        if (title.includes(bookTitle.toLowerCase())) {
+          const bookUrl = button.querySelector('a').href;
+          renderPDF(bookUrl);
+          bookShelf.style.display = 'none';
+          bookContent.style.display = 'block';
+          readBookButton.style.display = 'block';
+          speakMessage(`You have opened the book titled ${bookTitle}.`);
+          setTimeout(() => {
+            speakMessage("Where do you want to begin from?");
+            startVoiceRecognition(); // Start voice recognition after asking the question
+          }, 3000); // Delay to allow the first message to be spoken
+          return; // Stop further execution
+        }
+      }
+      // If book not found, inform the user
+      speakMessage("Sorry, that book is not available.");
     }
-  } else if (command.includes('read from chapter') || (command.includes('start from chapter'))) {
-    const chapterNumber = parseInt(command.split('read from chapter')[1].trim());
-    if (!isNaN(chapterNumber)) {
-      readFromChapter(chapterNumber);
-    } else {
-      speakMessage("Please specify a valid chapter number.");
+
+    // Function to close the book and return to the library view
+    function closeBook() {
+      bookViewer.src = '';
+      bookContent.innerHTML = '';
+      bookViewer.style.display = 'none';
+      bookShelf.style.display = 'block';
+      bookContent.style.display = 'none';
+      readBookButton.style.display = 'none';
+      speakMessage("Returned to the library.");
     }
-  } else if (command.includes('read from introduction') || (command.includes('start from introduction'))) {
-    readFromIntroduction();
-  } else if (command.includes('what is in the library') || (command.includes('what do you have in the library'))) {
-    speakMessage("there are books in the library");
-  } else if (command.includes('summary')) {
-    readSummary();
-  } else if (command.includes('how many books') || (command.includes('specify number of books'))) {
-    informBookCount();
-  } else if (command.includes('list books') || (command.includes('which books')) || (command.includes('what books')) || (command.includes('name the books')) || (command.includes('mention them')) || (command.includes('mention books'))) {
-    listBooksInLibrary();
-  } else {
-    speakMessage("Please say 'open' followed by the book title, 'close' to return to the library, or specify a reading location.");
-  }
-}
 
-// Function to read the book content with reduced speed rate
-function readBook() {
-  const textContent = bookContent.innerText;
-  const utterance = new SpeechSynthesisUtterance(textContent);
-  utterance.rate = 0.8; // Adjust speed rate as needed (0.8 is slower)
-  window.speechSynthesis.speak(utterance);
-}
+    // Function to handle speech recognition
+    function handleSpeechRecognition(event) {
+      const command = event.results[0][0].transcript.toLowerCase();
+      console.log(`Recognized command: ${command}`); // Debugging log
+      if (command.includes('open')) {
+        const bookTitle = command.split('open')[1].trim();
+        if (bookTitle) {
+          openSelectedBook(bookTitle);
+        } else {
+          speakMessage("Please specify a book title.");
+        }
+      } else if (command.includes('close')) {
+        closeBook();
+      } else if (command.includes('read from page') || command.includes('start from page')) {
+        const pageNumber = parseInt(command.split('read from page')[1].trim());
+        if (!isNaN(pageNumber)) {
+          readFromPage(pageNumber);
+        } else {
+          speakMessage("Please specify a valid page number.");
+        }
+      } else if (command.includes('read from chapter') || (command.includes('start from chapter'))) {
+        const chapterNumber = parseInt(command.split('read from chapter')[1].trim());
+        if (!isNaN(chapterNumber)) {
+          readFromChapter(chapterNumber);
+        } else {
+          speakMessage("Please specify a valid chapter number.");
+        }
+      } else if (command.includes('read from introduction') || (command.includes('start from introduction'))) {
+        readFromIntroduction();
+      } else if (command.includes('what is in the library') || (command.includes('what do you have in the library'))) {
+        speakMessage("there are books in the library");
+      } else if (command.includes('summary')) {
+        readSummary();
+      } else if (command.includes('how many books') || (command.includes('specify number of books'))) {
+        informBookCount();
+      } else if (command.includes('list books') || (command.includes('which books')) || (command.includes('what books')) || (command.includes('name the books')) || (command.includes('mention them')) || (command.includes('mention books'))) {
+        listBooksInLibrary();
+      } else {
+        speakMessage("Please say 'open' followed by the book title, 'close' to return to the library, or specify a reading location.");
+      }
+    }
 
-// Function to start voice recognition
-function startVoiceRecognition() {
-  const recognition = new webkitSpeechRecognition();
-  recognition.continuous = false;
-  recognition.lang = 'en-US';
-  recognition.onresult = handleSpeechRecognition;
-  recognition.onerror = function(event) {
-    console.error("Speech recognition error", event); // Debugging log
-    speakMessage("Sorry, there was an error processing your request.");
-  };
-  recognition.onstart = function() {
-    console.log("Speech recognition started"); // Debugging log
-  };
-  recognition.onend = function() {
-    console.log("Speech recognition ended"); // Debugging log
-  };
-  recognition.start();
-}
+    // Function to read the book content with reduced speed rate
+    function readBook() {
+      const textContent = bookContent.innerText;
+      const utterance = new SpeechSynthesisUtterance(textContent);
+      utterance.rate = 0.8; // Adjust speed rate as needed (0.8 is slower)
+      window.speechSynthesis.speak(utterance);
+    }
 
-// Function to read from a specific page and start reading
-function readFromPage(pageNumber) {
-  renderPDFPages(bookContent.dataset.url, pageNumber, true);
-}
+    // Function to start voice recognition
+    function startVoiceRecognition() {
+      const recognition = new webkitSpeechRecognition();
+      recognition.continuous = false;
+      recognition.lang = 'en-US';
+      recognition.onresult = handleSpeechRecognition;
+      recognition.onerror = function (event) {
+        console.error("Speech recognition error", event); // Debugging log
+        speakMessage("Sorry, there was an error processing your request.");
+      };
+      recognition.onstart = function () {
+        console.log("Speech recognition started"); // Debugging log
+      };
+      recognition.onend = function () {
+        console.log("Speech recognition ended"); // Debugging log
+      };
+      recognition.start();
+    }
 
-// Function to read from the introduction and start reading
-function readFromIntroduction() {
-  // Assuming introduction is on page 1 for this example
-  readFromPage(1);
-}
+    // Function to read from a specific page and start reading
+    function readFromPage(pageNumber) {
+      renderPDFPages(bookContent.dataset.url, pageNumber, true);
+    }
 
-// Function to read from a specific chapter and start reading
-function readFromChapter(chapterNumber) {
-  // Implement chapter navigation logic here
-  // For simplicity, let's assume each chapter starts on a fixed page
-  const chapterStartPage = chapterNumber * 10; // Example logic
-  readFromPage(chapterStartPage);
-}
+    // Function to read from the introduction and start reading
+    function readFromIntroduction() {
+      // Assuming introduction is on page 1 for this example
+      readFromPage(1);
+    }
 
-// Function to read summary
-function readSummary() {
-  const summaryText = extractSummary(bookContent.dataset.url);
-  const utterance = new SpeechSynthesisUtterance(summaryText);
-  utterance.rate = 0.8; // Adjust speed rate as needed (0.8 is slower)
-  window.speechSynthesis.speak(utterance);
-}
+    // Function to read from a specific chapter and start reading
+    function readFromChapter(chapterNumber) {
+      // Implement chapter navigation logic here
+      // For simplicity, let's assume each chapter starts on a fixed page
+      const chapterStartPage = chapterNumber * 10; // Example logic
+      readFromPage(chapterStartPage);
+    }
 
-// Function to extract summary
-function extractSummary(url) {
-  // Implement logic to extract summary from PDF
-  // For simplicity, let's assume summary is on the first page
-  // This function should be enhanced to better extract actual summaries
-  return "This is a placeholder for the summary. The actual summary extraction logic needs to be implemented.";
-}
+    // Function to read summary
+    function readSummary() {
+      const summaryText = extractSummary(bookContent.dataset.url);
+      const utterance = new SpeechSynthesisUtterance(summaryText);
+      utterance.rate = 0.8; // Adjust speed rate as needed (0.8 is slower)
+      window.speechSynthesis.speak(utterance);
+    }
 
-// Function to render specific pages of the PDF using PDF.js
-function renderPDFPages(url, startPage, autoScroll = false) {
-  const loadingTask = pdfjsLib.getDocument(url);
-  loadingTask.promise.then(function(pdf) {
-    bookContent.innerHTML = ''; // Clear previous content
-    let currentPageNumber = startPage;
-    let totalPages = pdf.numPages;
+    // Function to extract summary
+    function extractSummary(url) {
+      // Implement logic to extract summary from PDF
+      // For simplicity, let's assume summary is on the first page
+      // This function should be enhanced to better extract actual summaries
+      return "This is a placeholder for the summary. The actual summary extraction logic needs to be implemented.";
+    }
 
-    function renderPage(pageNumber) {
-      pdf.getPage(pageNumber).then(function(page) {
-        const scale = 1.5;
-        const viewport = page.getViewport({ scale: scale });
+    // Function to render specific pages of the PDF using PDF.js
+    function renderPDFPages(url, startPage, autoScroll = false) {
+      const loadingTask = pdfjsLib.getDocument(url);
+      loadingTask.promise.then(function (pdf) {
+        bookContent.innerHTML = ''; // Clear previous content
+        let currentPageNumber = startPage;
+        let totalPages = pdf.numPages;
 
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
+        function renderPage(pageNumber) {
+          pdf.getPage(pageNumber).then(function (page) {
+            const scale = 1.5;
+            const viewport = page.getViewport({ scale: scale });
 
-        const renderContext = {
-          canvasContext: context,
-          viewport: viewport
-        };
-        page.render(renderContext).promise.then(function () {
-          bookContent.appendChild(canvas);
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
 
-          // Extract text from the page
-          page.getTextContent().then(function(textContent) {
-            let textLayerDiv = document.createElement('div');
-            textLayerDiv.setAttribute('class', 'textLayer');
-            textLayerDiv.setAttribute('style', `width: ${viewport.width}px; height: ${viewport.height}px;`);
+            const renderContext = {
+              canvasContext: context,
+              viewport: viewport
+            };
+            page.render(renderContext).promise.then(function () {
+              bookContent.appendChild(canvas);
 
-            textContent.items.forEach(function(textItem) {
-              let span = document.createElement('span');
-              span.textContent = textItem.str;
-              span.setAttribute('style', `left: ${textItem.transform[4]}px; top: ${textItem.transform[5]}px; font-size: ${textItem.height}px;`);
-              textLayerDiv.appendChild(span);
-            });
+              // Extract text from the page
+              page.getTextContent().then(function (textContent) {
+                let textLayerDiv = document.createElement('div');
+                textLayerDiv.setAttribute('class', 'textLayer');
+                textLayerDiv.setAttribute('style', `width: ${viewport.width}px; height: ${viewport.height}px;`);
 
-            bookContent.appendChild(textLayerDiv);
+                textContent.items.forEach(function (textItem) {
+                  let span = document.createElement('span');
+                  span.textContent = textItem.str;
+                  span.setAttribute('style', `left: ${textItem.transform[4]}px; top: ${textItem.transform[5]}px; font-size: ${textItem.height}px;`);
+                  textLayerDiv.appendChild(span);
+                });
 
-            // Start reading the content if autoScroll is true
-            if (autoScroll) {
-              const utterance = new SpeechSynthesisUtterance(textLayerDiv.innerText);
-              utterance.rate = 0.8; // Adjust speed rate as needed (0.8 is slower)
-              window.speechSynthesis.speak(utterance);
-              utterance.onend = function() {
-                currentPageNumber++;
-                if (currentPageNumber <= totalPages) {
-                  renderPage(currentPageNumber);
+                bookContent.appendChild(textLayerDiv);
+
+                // Start reading the content if autoScroll is true
+                if (autoScroll) {
+                  const utterance = new SpeechSynthesisUtterance(textLayerDiv.innerText);
+                  utterance.rate = 0.8; // Adjust speed rate as needed (0.8 is slower)
+                  window.speechSynthesis.speak(utterance);
+                  utterance.onend = function () {
+                    currentPageNumber++;
+                    if (currentPageNumber <= totalPages) {
+                      renderPage(currentPageNumber);
+                    }
+                  };
                 }
-              };
-            }
-          });
-        });
-      });
-    }
-
-    // Start rendering pages
-    renderPage(startPage);
-  });
-}
-
-// Function to render the PDF using PDF.js
-function renderPDF(url) {
-  const loadingTask = pdfjsLib.getDocument(url);
-  loadingTask.promise.then(function(pdf) {
-    bookContent.dataset.url = url; // Store the URL for later use
-    bookContent.innerHTML = ''; // Clear previous content
-    for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
-      pdf.getPage(pageNumber).then(function(page) {
-        const scale = 1.5;
-        const viewport = page.getViewport({ scale: scale });
-
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-
-        const renderContext = {
-          canvasContext: context,
-          viewport: viewport
-        };
-        page.render(renderContext).promise.then(function () {
-          bookContent.appendChild(canvas);
-
-          // Extract text from the page
-          page.getTextContent().then(function(textContent) {
-            let textLayerDiv = document.createElement('div');
-            textLayerDiv.setAttribute('class', 'textLayer');
-            textLayerDiv.setAttribute('style', `width: ${viewport.width}px; height: ${viewport.height}px;`);
-
-            textContent.items.forEach(function(textItem) {
-              let span = document.createElement('span');
-              span.textContent = textItem.str;
-              span.setAttribute('style', `left: ${textItem.transform[4]}px; top: ${textItem.transform[5]}px; font-size: ${textItem.height}px;`);
-              textLayerDiv.appendChild(span);
+              });
             });
-
-            bookContent.appendChild(textLayerDiv);
           });
-        });
+        }
+
+        // Start rendering pages
+        renderPage(startPage);
       });
     }
-  });
-}
 
-// Function to inform user about the number of books
-function informBookCount() {
-  const bookCount = bookButtons.length;
-  speakMessage(`There are ${bookCount} books in the library.`);
-}
+    // Function to render the PDF using PDF.js
+    function renderPDF(url) {
+      const loadingTask = pdfjsLib.getDocument(url);
+      loadingTask.promise.then(function (pdf) {
+        bookContent.dataset.url = url; // Store the URL for later use
+        bookContent.innerHTML = ''; // Clear previous content
+        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+          pdf.getPage(pageNumber).then(function (page) {
+            const scale = 1.5;
+            const viewport = page.getViewport({ scale: scale });
 
-// Function to list the books in the library
-function listBooksInLibrary() {
-  const bookTitles = Array.from(bookButtons).map(button => button.querySelector('a').innerText);
-  const message = `The books in the library are: ${bookTitles.join(', ')}.`;
-  speakMessage(message);
-}
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
 
-// Function to handle keyboard events
-function handleKeydown(event) {
-  // Stop speaking voice on space bar or Enter key press
-  if (event.key === ' ' || event.key === 'Enter') {
-    window.speechSynthesis.cancel(); // Stop speaking voice
-  }
+            const renderContext = {
+              canvasContext: context,
+              viewport: viewport
+            };
+            page.render(renderContext).promise.then(function () {
+              bookContent.appendChild(canvas);
 
-  // Handle specific key actions
-  switch (event.key) {
-    case ' ':
-      event.preventDefault(); // Prevent default space bar action (scrolling)
-      startVoiceRecognition();
-      break;
-    case 'Enter':
-      startVoiceRecognition(); // Start voice recognition for commands
-      break;
-  }
-}
+              // Extract text from the page
+              page.getTextContent().then(function (textContent) {
+                let textLayerDiv = document.createElement('div');
+                textLayerDiv.setAttribute('class', 'textLayer');
+                textLayerDiv.setAttribute('style', `width: ${viewport.width}px; height: ${viewport.height}px;`);
 
-// Add event listeners for keyboard events
-document.addEventListener('keydown', handleKeydown);
-readBookButton.addEventListener('click', readBook);
+                textContent.items.forEach(function (textItem) {
+                  let span = document.createElement('span');
+                  span.textContent = textItem.str;
+                  span.setAttribute('style', `left: ${textItem.transform[4]}px; top: ${textItem.transform[5]}px; font-size: ${textItem.height}px;`);
+                  textLayerDiv.appendChild(span);
+                });
+
+                bookContent.appendChild(textLayerDiv);
+              });
+            });
+          });
+        }
+      });
+    }
+
+    // Function to inform user about the number of books
+    function informBookCount() {
+      const bookCount = bookButtons.length;
+      speakMessage(`There are ${bookCount} books in the library.`);
+    }
+
+    // Function to list the books in the library
+    function listBooksInLibrary() {
+      const bookTitles = Array.from(bookButtons).map(button => button.querySelector('a').innerText);
+      const message = `The books in the library are: ${bookTitles.join(', ')}.`;
+      speakMessage(message);
+    }
+
+    // Function to handle keyboard events
+    function handleKeydown(event) {
+      // Stop speaking voice on space bar or Enter key press
+      if (event.key === ' ' || event.key === 'Enter') {
+        window.speechSynthesis.cancel(); // Stop speaking voice
+      }
+
+      // Handle specific key actions
+      switch (event.key) {
+        case ' ':
+          event.preventDefault(); // Prevent default space bar action (scrolling)
+          startVoiceRecognition();
+          break;
+        case 'Enter':
+          startVoiceRecognition(); // Start voice recognition for commands
+          break;
+      }
+    }
+
+    // Add event listeners for keyboard events
+    document.addEventListener('keydown', handleKeydown);
+    readBookButton.addEventListener('click', readBook);
 
   </script>
-    <script src="speake.js"></script>
+  <script src="speake.js"></script>
   <script src="test.js"></script>
 </body>
+
 </html>
