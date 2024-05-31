@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
       utteranceText = 'Welcome to the YouTube page. Press the space bar button and speak the name of the song you want to listen to.';
     } else if (currentPageUrl.includes('library')) {
       utteranceText = 'Welcome to the library page. Press the space bar button and give a command of what you want to do with the library.';
+    } else if (currentPageUrl.includes('guide')) {
+      utteranceText = 'You are now on the guide page.';
     } else {
       utteranceText = defaultText;
     }

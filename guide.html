@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device=width, initial-scale=1.0">
+    <title>Blind Navigator Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #000;
+            color: white;
+        }
+        .navigation-box {
+            border: 2px solid #fff;
+            padding: 20px;
+            margin: 10px 0;
+            cursor: pointer;
+            display: none; /* Initially hide all boxes */
+            animation: fadeIn 1s forwards; /* Apply fade-in animation */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        .visible {
+            display: block; /* Class to make a box visible */
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+.navigation a{
+position: relative;
+font-size: 1.1em;
+text-decoration: none;
+font-weight: 500;
+margin-left: 80px;
+color: white;
+float: right;
+top: 0px;
+font-family: 'poppins', sans-serif;
+}
+
+.navigation a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background:white;
+    border-radius: 5px;
+    transform: scaleX(0);
+    transition: transform.5s;
+}
+.navigation a:hover::after{
+    transform: scaleX(1);
+
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="guide-title" class="visible">Blind Navigator Guide</h1>
+        <nav class="navigation">
+            <a href="about.html">About</a>
+            <a href="service.html">Services</a>
+            <a href="contact.html">Contact </a>
+            <a href="youtube.html">Youtube</a>
+            <a href="Library.html">Library</a>
+            <a href="news.html">News</a>
+        </nav>
+        
+    </header>
+   
+    <div id="home" class="navigation-box">Home: The home page is an interactive page that helps you have some conversation with your AI. You are gonna do this by pressing the enter key and say home page, this will directly take you to the home page. When you are there, press the space bar key and ask your AI anything you may want to know.</div>
+    <div id="contacts" class="navigation-box">Contacts: You can give us your feedback from here so that we get to know how to improve our website. To do this, press the enter key and say contacts, this will direct you to the contacts page. when you there, press the space bar key and say your e-mail. when you press the space bar key for the second time, say your message and press it again to confirm the sending of the message. </div>
+    <div id="youtube" class="navigation-box">YouTube: Watch your favorite videos here. The only thing you have to do is press the enter key and say YouTube for you to be directed to the YouTube page. When you are there just press the space bar key and say the name of the song you may want to listen to. the song will be played for you to listen.</div>
+    <div id="library" class="navigation-box">Library: Access your books from here. Ask your AI any question when you have reached the library page by pressing the enter key button and saying library and it will help you through everything.</div>
+    <div id="about-us" class="navigation-box">About Us: Learn more about us.</div>
+    <div id="services" class="navigation-box">Services: Explore the services we offer.</div>
+    <div id="news" class="navigation-box">News: Explore the news updates from famous news platforms in the world.</div>
+
+    <script>
+        // Check for browser support for Speech Recognition and Speech Synthesis
+        if ('webkitSpeechRecognition' in window && 'speechSynthesis' in window) {
+            const recognition = new webkitSpeechRecognition();
+            recognition.continuous = false;  // Make sure recognition is not continuous
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+
+            recognition.onstart = function() {
+                console.log('Voice recognition started. Try speaking into the microphone.');
+            };
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript.trim().toLowerCase();
+                console.log('Voice command received:', transcript);
+                const question = transcript.toLowerCase();
+                handleQuestion(question);
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Error occurred in recognition: ', event.error);
+            };
+
+            recognition.onend = function() {
+                console.log('Voice recognition ended.');
+            };
+
+            function speak(text) {
+                console.log('Speaking:', text);
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                window.speechSynthesis.speak(utterance);
+            }
+
+            function stopSpeaking() {
+                window.speechSynthesis.cancel();
+            }
+
+            function showElement(element) {
+                // Hide all navigation boxes
+                document.querySelectorAll('.navigation-box').forEach(box => box.classList.remove('visible'));
+                // Hide the title
+                document.getElementById('guide-title').classList.remove('visible');
+                // Show the selected element
+                element.classList.add('visible');
+            }
+
+            function handleQuestion(question) {
+                if (question.includes('home')) {
+                    const element = document.getElementById('home');
+                    showElement(element);
+                    speak(element.innerText);
+                } else if (question.includes('contacts')) {
+                    const element = document.getElementById('contacts');
+                    showElement(element);
+                    speak(element.innerText);
+                } else if (question.includes('youtube')) {
+                    const element = document.getElementById('youtube');
+                    showElement(element);
+                    speak(element.innerText);
+                } else if (question.includes('library')) {
+                    const element = document.getElementById('library');
+                    showElement(element);
+                    speak(element.innerText);
+                } else if (question.includes('about us')) {
+                    const element = document.getElementById('about-us');
+                    showElement(element);
+                    speak(element.innerText);
+                } else if (question.includes('services')) {
+                    const element = document.getElementById('services');
+                    showElement(element);
+                    speak(element.innerText);
+                } else if (question.includes('what is this') || (question.includes('what is here'))) {
+                    speak("This is Ability AI designed through voice interactions which is mainly favouring blind users.");
+                } else if (question.includes('hello')|| (question.includes('hey')) || (question.includes('hi'))) {
+                    speak("Hello, how can I help you today?");
+                } else if (question.includes('what can i do with') || question.includes('what will i do with') || question.includes('what will this help')) {
+                    speak("This demo is here to help you with anything you may want to do on the internet.");
+                } else if (question.includes('do not know') || (question.includes('don\'t know'))) {
+                    speak("Okay. It seems you are lost. But do not worry about it, I am here to help you. This is a demo that is designed to help you do different activities to keep you engaged. Do you mind asking me a question like, 'how can I use this'?");
+                } else if (question.includes('what is internet') || (question.includes('what do you mean by internet'))) {
+                    speak("Simply, it's a place where you can get information and learn what people share through their uploads.");
+                } else if (question.includes('thank you')) {
+                    speak("You're welcome. Always remember to come back here whenever you want to know more about how to use this demo. I will be glad to help you further.");
+                } else if (question.includes('where am i')) {
+                    speak("You are on the guide page of the Ability project. I can help you with how you can use this project.");
+                } else if (question.includes('how to use this') || question.includes("how can i use this") ||(question.includes('how will i use this'))) {
+                    speak("To use this guide, press the space bar and say one of the following commands: Home, Contacts, YouTube, Library, About Us, or Services. This will help you interact more with the demo.");
+                } else if (question.includes('who are you')) {
+                    speak("I am Ability AI assistant, here to help you navigate the website.");
+                } else if (question.includes('help')) {
+                    speak("Press the space bar key on your keyboard whenever you have a question to ask then ask any question related to how to use the Ability program.");
+                } else if (question.includes('what is your name')) {
+                    speak("My name is Mark, I am an Ability AI assistant developed by the Ability team.");
+                } else {
+                    speak("Sorry, I didn't understand the command. Do you mind asking me a question like, how can i use this?. I will help you do that.");
+                }
+            }
+
+            // Handle space bar press
+            document.addEventListener('keydown', function(event) {
+                if (event.code === 'Space') {
+                    stopSpeaking();
+                    recognition.start();
+                }
+            });
+        } else {
+            console.log('Web Speech API is not supported by this browser.');
+        }
+    </script>
+       <script src="test.js"></script>
+       <script src="speake.js"></script>
+</body>
+</html>

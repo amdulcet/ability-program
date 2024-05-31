@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
           window.location.href = 'news.html'; // Redirect to news page
         } else if (lastResult.includes('library')) {
           window.location.href = 'Library.html'; // Redirect to library page
+        } else if (lastResult.includes('guide') || (lastResult.includes('lead')) || (lastResult.includes('assist'))) {
+          window.location.href = 'guide.html'; // Redirect to guide page
         } else {
           alert('No matching keyword found.'); // Alert if no matching keyword found
         }
