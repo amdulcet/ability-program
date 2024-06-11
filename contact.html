@@ -137,29 +137,20 @@
                 }
             }
 
-            // Function to submit the message via AJAX
-            function submitMessage() {
-                const formData = new FormData(contactForm);
-                const email = formData.get("email");
-                const message = formData.get("message");
-
-                // AJAX request to server-side script to send the email
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "send_email.php", true);
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        speakConfirmation("Message sent successfully.");
-                    }
-                };
-                xhr.send("email=" + encodeURIComponent(email) + "&message=" + encodeURIComponent(message));
-            }
-
             // Function to speak confirmation message
             function speakConfirmation(message) {
                 var utterance = new SpeechSynthesisUtterance();
                 utterance.text = message;
                 window.speechSynthesis.speak(utterance);
+            }
+
+            // Function to submit the form
+            function submitMessage() {
+                const formData = new FormData(contactForm);
+                const email = formData.get("email");
+                const message = formData.get("message");
+                const mailtoLink = `mailto:ingeritresor@gmail.com?subject=Message%20from%20${encodeURIComponent(email)}&body=${encodeURIComponent(message)}`;
+                window.location.href = mailtoLink;
             }
 
             // Add event listener for space bar press

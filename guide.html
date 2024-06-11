@@ -181,8 +181,8 @@ if ('webkitSpeechRecognition' in window && 'speechSynthesis' in window) {
             speak(element.innerText);
         } else if (question.includes('what is this') || question.includes('what is here')) {
             speak("This is Ability AI designed through voice interactions which is mainly favouring blind users.");
-        } else if (question.includes('hello') || question.includes('hey') || question.includes('hi')) {
-            speak("Hello, how can I help you today?");
+        // } else if (question.includes('hello') || question.includes('hey') || question.includes('hi')) {
+        //     speak("Hello, how can I help you today?");
         } else if (question.includes('what can i do with') || question.includes('what will i do with') || question.includes('what will this help')) {
             speak("This demo is here to help you with anything you may want to do on the internet.");
         } else if (question.includes('do not know') || question.includes('don\'t know')) {

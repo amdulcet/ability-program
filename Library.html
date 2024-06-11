@@ -6,54 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Library</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500&display=swap');
 
     * {
-      font-family: 'poppins', sans-serif;
+      font-family: 'Poppins', sans-serif;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
       background-color: #000;
       color: white;
-    }
-
-    .btn a {
-      text-decoration: none;
-      font-family: 'poppins', sans-serif;
-      color: white;
-    }
-
-    .btn {
-      height: 40px;
-      width: 900px;
-      cursor: pointer;
-      border-radius: 10px;
-      background-color: #00000000;
-    }
-    .selected {
-      border: 2px solid;
-      border-color: white;
-      color: #000;
-      background-color: #201f1f00;
-      cursor: pointer;
-    }
-    #book-viewer {
-      display: none;
-      width: 100%;
-      height: 80vh;
-    }
-
-    #book-viewer {
-      display: none;
-      width: 100%;
-      height: 80vh;
-    }
-
-    #book-content {
-      display: none;
-      width: 100%;
-      height: 80vh;
-      overflow: auto;
+      padding: 80px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
     }
 
     header {
@@ -61,8 +30,8 @@
       top: 0;
       left: 0;
       width: 100%;
-      padding: 20px 100px;
-      background-color: transparent;
+      padding: 20px 50px;
+      background-color: #000;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -76,9 +45,11 @@
       font-weight: 500;
       margin-left: 40px;
       color: white;
-      float: right;
-      top: -50px;
+      transition: color 0.3s ease;
+    }
 
+    .navigation a:hover {
+      color: #f0a500;
     }
 
     .navigation a::after {
@@ -88,46 +59,151 @@
       bottom: -6px;
       width: 100%;
       height: 3px;
-      background: white;
+      background: #f0a500;
       border-radius: 5px;
       transform: scaleX(0);
-      transition: transform.5s;
+      transition: transform 0.5s;
     }
 
     .navigation a:hover::after {
       transform: scaleX(1);
+    }
 
+    h1 {
+      margin-bottom: 40px;
+      font-weight: 300;
+      font-size: 2.5em;
+    }
+
+    #book-shelf {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .btn {
+      height: 60px;
+      width: 300px;
+      cursor: pointer;
+      border-radius: 10px;
+      background-color: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.2em;
+      font-weight: 400;
+      transition: color 0.3s ease;
+      z-index: 2;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      background-color: #f0a500;
+      transition: all 0.7s;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      z-index: 1;
+    }
+
+    .btn:hover::before {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .btn:hover a {
+      color: #000;
+    }
+
+    .selected {
+      border: 2px solid white;
+      color: #000;
+      background-color: #201f1f;
+    }
+
+    #book-viewer {
+      display: none;
+      width: 100%;
+      height: 80vh;
+      margin-top: 20px;
+    }
+
+    #book-content {
+      display: none;
+      width: 100%;
+      height: 80vh;
+      overflow: auto;
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #1a1a1a;
+      border-radius: 10px;
+    }
+
+    #read-book {
+      display: none;
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #f0a500;
+      color: #000;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #read-book:hover {
+      background-color: #d18f00;
     }
   </style>
 </head>
 
 <body>
-  <h1>Welcome to Library!</h1>
-  <nav class="navigation">
-    <a href="about.html">About</a>
-    <a href="service.html">Services</a>
-    <a href="contact.html">Contact </a>
-    <a href="youtube.html">Youtube</a>
-    <a href="home.html">Home</a>
-    <a href="news.html">News</a>
-    <a href="guide.html">Guide</a>
-  </nav>
+  <header>
+    <nav class="navigation">
+      <a href="about.html">About</a>
+      <a href="service.html">Services</a>
+      <a href="contact.html">Contact</a>
+      <a href="youtube.html">YouTube</a>
+      <a href="home.html">Home</a>
+      <a href="news.html">News</a>
+      <a href="guide.html">Guide</a>
+    </nav>
+  </header>
+
+  <h1>Welcome to the Library!</h1>
+
   <div id="book-shelf">
-    <button class="btn"> <a href="atomic-habits.pdf">atomic habits</a></button>
-    <button class="btn"> <a href="survive-the-drive.pdf">survive the drive</a></button>
-    <button class="btn"> <a href="the-psychology-of-motivation.pdf">the psychology of motivation</a></button>
-    <button class="btn"> <a href="think-for-yourself-control-your-life.pdf">think for yourself control your
-        life</a></button>
-    <button class="btn"> <a href="time-management-for-creative-people.pdf">time management for creative
-        people</a></button>
-    <button class="btn"> <a href="how to talk anyone.pdf">how to talk to anyone</a></button>
-    <button class="btn"> <a href="Rich Dad Poor Dad.pdf">rich dad poor dad</a></button>
-    <button class="btn"> <a href="atomic-habits.pdf">atomic habits</a></button>
+    <button class="btn"> <a href="atomic-habits.pdf">Atomic Habits</a></button>
+    <button class="btn"> <a href="survive-the-drive.pdf">Survive the Drive</a></button>
+    <button class="btn"> <a href="the-psychology-of-motivation.pdf">The Psychology of Motivation</a></button>
+    <button class="btn"> <a href="think-for-yourself-control-your-life.pdf">Think for Yourself, Control Your Life</a></button>
+    <button class="btn"> <a href="time-management-for-creative-people.pdf">Time Management for Creative People</a></button>
+    <button class="btn"> <a href="how-to-talk-anyone.pdf">How to Talk to Anyone</a></button>
+    <button class="btn"> <a href="rich-dad-poor-dad.pdf">Rich Dad Poor Dad</a></button>
   </div>
+
   <iframe id="book-viewer"></iframe>
   <div id="book-content"></div>
-  <button id="read-book" style="display:none;">Read Book</button>
+  <button id="read-book">Read Book</button>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+</body>
+
+</html>
+
   <script>
     // Get all book buttons
     const bookButtons = document.querySelectorAll('.btn');
@@ -431,6 +507,6 @@
   </script>
   <script src="speake.js"></script>
   <script src="test.js"></script>
-</body>
+
 
 </html>
