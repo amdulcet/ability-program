@@ -119,6 +119,7 @@
           } else {
             console.log('Song not found.');
             // You can display a message to the user indicating that the song was not found
+            // modification needed
           }
         })
         .catch(error => console.error('Error searching for song:', error));
@@ -143,6 +144,8 @@
     function onPlayerStateChange(event) {
       if (event.data == YT.PlayerState.ENDED) {
         // Handle video end
+        // video end and play next video
+        // video end and play it again
       }
     }
 

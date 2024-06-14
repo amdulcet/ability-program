@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
           window.location.href = 'service.html'; // Redirect to service page
         } else if (lastResult.includes('contact')) {
           window.location.href = 'contact.html'; // Redirect to contact page
-        } else if (lastResult.includes('youtube')) {
+        } else if (lastResult.includes('youtube') || lastResult.includes('music') || lastResult.includes('song')) {
           window.location.href = 'youtube.html'; // Redirect to youtube page
         } else if (lastResult.includes('news')) {
           window.location.href = 'news.html'; // Redirect to news page
