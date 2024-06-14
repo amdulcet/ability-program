@@ -304,7 +304,7 @@
     function readBook() {
       const textContent = bookContent.innerText;
       const utterance = new SpeechSynthesisUtterance(textContent);
-      utterance.rate = 0.8; // Adjust speed rate as needed (0.8 is slower)
+      utterance.rate = 0.08; // Adjust speed rate as needed (0.8 is slower)
       window.speechSynthesis.speak(utterance);
     }
 
