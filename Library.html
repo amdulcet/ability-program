@@ -177,7 +177,7 @@
       <a href="service.html">Services</a>
       <a href="contact.html">Contact </a>
       <a href="youtube.html">Youtube</a>
-      <a href="Library.html">Library</a>
+      <a href="home.html">Home</a>
       <a href="news.html">News</a>
       <a href="guide.html">Guide</a>
     </nav>
@@ -481,24 +481,20 @@
       speakMessage(message);
     }
 
-    // Function to handle keyboard events
-    function handleKeydown(event) {
-      // Stop speaking voice on space bar or Enter key press
-      if (event.key === ' ' || event.key === 'Enter') {
-        window.speechSynthesis.cancel(); // Stop speaking voice
-      }
+   // Function to handle keyboard events
+function handleKeydown(event) {
+  // Stop speaking voice on space bar or Enter key press
+  if (event.key === ' ' || event.key === 'Enter') {
+    window.speechSynthesis.cancel(); // Stop speaking voice
+  } else {
+    // Start voice recognition for other key presses
+    startVoiceRecognition();
+  }
+}
 
-      // Handle specific key actions
-      switch (event.key) {
-        case ' ':
-          event.preventDefault(); // Prevent default space bar action (scrolling)
-          startVoiceRecognition();
-          break;
-        case 'Enter':
-          startVoiceRecognition(); // Start voice recognition for commands
-          break;
-      }
-    }
+// Add event listener for keyboard events
+document.addEventListener('keydown', handleKeydown);
+
 
     // Add event listeners for keyboard events
     document.addEventListener('keydown', handleKeydown);
