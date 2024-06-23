@@ -346,22 +346,6 @@
       readFromPage(chapterStartPage);
     }
 
-    // // Function to read summary
-    // function readSummary() {
-    //   const summaryText = extractSummary(bookContent.dataset.url);
-    //   const utterance = new SpeechSynthesisUtterance(summaryText);
-    //   utterance.rate = 0.8; // Adjust speed rate as needed (0.8 is slower)
-    //   window.speechSynthesis.speak(utterance);
-    // }
-
-    // // Function to extract summary
-    // function extractSummary(url) {
-    //   // Implement logic to extract summary from PDF
-    //   // For simplicity, let's assume summary is on the first page
-    //   // This function should be enhanced to better extract actual summaries
-    //   return "This is a placeholder for the summary. The actual summary extraction logic needs to be implemented.";
-    // }
-
     // Function to render specific pages of the PDF using PDF.js
     function renderPDFPages(url, startPage, autoScroll = false) {
       const loadingTask = pdfjsLib.getDocument(url);
@@ -405,7 +389,7 @@
                 // Start reading the content if autoScroll is true
                 if (autoScroll) {
                   const utterance = new SpeechSynthesisUtterance(textLayerDiv.innerText);
-                  utterance.rate = 0.8; // Adjust speed rate as needed (0.8 is slower)
+                  utterance.rate = 0.3; // Adjust speed rate as needed (0.8 is slower)
                   window.speechSynthesis.speak(utterance);
                   utterance.onend = function () {
                     currentPageNumber++;
